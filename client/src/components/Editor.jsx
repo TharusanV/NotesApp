@@ -2,16 +2,21 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import TextStyle from '@tiptap/extension-text-style'
 import { Color } from '@tiptap/extension-color'
-import History from '@tiptap/extension-history'
+import FontFamily from '@tiptap/extension-font-family'
+import Link from '@tiptap/extension-link'
+import CharacterCount from '@tiptap/extension-character-count'
+
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 
 const Editor = () => {
   
   const editor = useEditor({
     content: '<p></p>',
     extensions: [
-      StarterKit, TextStyle, Color,History,
+      StarterKit, TextStyle, Color, FontFamily, CharacterCount,
     ],
   })
 
@@ -20,23 +25,18 @@ const Editor = () => {
   }
 
 
+
   return (
     <div>
-      <div style={{display: 'inline-flex', alignItems: 'center', paddingBottom: '5px', borderBottom: '2px solid black'}}>
-        <div className='undo-text' style={{marginRight: '10px'}}>
-          <button onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()}>
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '5px', borderBottom: '2px solid black'}}>
+        <div className='undo-redo' style={{marginRight: '10px'}}>
+          <button onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()} style={{border: 0, backgroundColor: 'white'}}>
             <UndoIcon/>
           </button>
-        </div>
-
-        <div className='redo-text' style={{marginRight: '10px'}}>
-          <button onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().redo()}>
+          <button onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().redo()} style={{border: 0, backgroundColor: 'white'}}>
             <RedoIcon/>
           </button>
         </div>
-
-      
-
 
         <div className='font-bold' style={{marginRight: '10px'}}>
           <button
@@ -54,7 +54,7 @@ const Editor = () => {
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editor.can() .chain() .focus() .toggleItalic() .run()}
           className={editor.isActive('italic') ? 'is-active' : ''}
-          style={{border: 0, backgroundColor: 'white', fontSize: '20px', fontFamily: 'arial'}}
+          style={{border: 0, backgroundColor: 'white', fontSize: '20px'}}
           >
             <strong><i>I</i></strong>
           </button>
@@ -72,10 +72,33 @@ const Editor = () => {
           </label>
         </div>
 
+        <div className='bullet-list' style={{marginRight: '10px', marginTop: '4px'}}>
+          <button
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          className={editor.isActive('bulletList') ? 'is-active' : ''}
+          style={{border: 0, backgroundColor: 'white'}}
+          >
+            <FormatListBulletedIcon/>
+          </button>      
+        </div>
+
+        <div className='ordered-list' style={{marginRight: '10px', marginTop: '4px'}}>
+          <button
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          className={editor.isActive('orderedList') ? 'is-active' : ''}
+          style={{border: 0, backgroundColor: 'white'}}
+          >
+            <FormatListNumberedIcon/>
+          </button>      
+        </div>
       </div>
       
-      <div style={{}}>
+      <div style={{border: '2px solid black', marginTop: '5px', display: 'inline-flex'}}>
         <EditorContent editor={editor} />
+      </div>
+
+      <div style={{border: '2px solid black', display: 'flex', flexDirection: 'column', marginTop: '5px'}}>
+        <div style={{marginTop: 'auto', width: '100%'}}>{editor.storage.characterCount.words()} words</div>
       </div>
     </div>
 

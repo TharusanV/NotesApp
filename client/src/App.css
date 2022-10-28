@@ -12,6 +12,14 @@ p{
 
 
 .ProseMirror{
-  border-radius: 0rem;
   padding-left: 0.75rem;
+  padding-top: 90px;
+  width: 795px;
+  height: 1125px;
+  overflow: scroll;
+}
+
+.ProseMirror p {
+  margin: 0;
+  border: 0;
 }
