@@ -5,7 +5,7 @@ import { Header, Hero, Sidebar } from './components';
 
 const App = () => {
   return (
-    <Box sx={{backgroundColor: '#D3D3D3'}}>
+    <Box>
       <Header/>
       <Sidebar/>
       <Hero/>

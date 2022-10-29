@@ -11,6 +11,8 @@ import RedoIcon from '@mui/icons-material/Redo';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 
+
+
 const Editor = () => {
   
   const editor = useEditor({
@@ -23,13 +25,13 @@ const Editor = () => {
   if (!editor) {
     return null
   }
-
+  
 
 
   return (
     <div>
-      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '5px', borderBottom: '2px solid black'}}>
-        <div className='undo-redo' style={{marginRight: '10px'}}>
+      <div className='editor-navbar-container'>
+        <div className='undo-redo'>
           <button onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()} style={{border: 0, backgroundColor: 'white'}}>
             <UndoIcon/>
           </button>
@@ -38,7 +40,9 @@ const Editor = () => {
           </button>
         </div>
 
-        <div className='font-bold' style={{marginRight: '10px'}}>
+
+
+        <div className='font-bold'>
           <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={ !editor.can() .chain() .focus() .toggleBold() .run() }
@@ -49,7 +53,7 @@ const Editor = () => {
           </button>
         </div>
         
-        <div className='font-italic' style={{marginRight: '10px'}}>
+        <div className='font-italic'>
           <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editor.can() .chain() .focus() .toggleItalic() .run()}
@@ -60,7 +64,7 @@ const Editor = () => {
           </button>
         </div>
 
-        <div className='font-color' style={{marginRight: '10px'}}>
+        <div className='font-color'>
           <input 
             type="color" 
             style={{marginRight: '5px'}} 
@@ -72,7 +76,7 @@ const Editor = () => {
           </label>
         </div>
 
-        <div className='bullet-list' style={{marginRight: '10px', marginTop: '4px'}}>
+        <div className='bullet-list' style={{marginTop: '4px'}}>
           <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={editor.isActive('bulletList') ? 'is-active' : ''}
@@ -82,7 +86,7 @@ const Editor = () => {
           </button>      
         </div>
 
-        <div className='ordered-list' style={{marginRight: '10px', marginTop: '4px'}}>
+        <div className='ordered-list' style={{marginTop: '4px'}}>
           <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           className={editor.isActive('orderedList') ? 'is-active' : ''}
@@ -93,11 +97,11 @@ const Editor = () => {
         </div>
       </div>
       
-      <div style={{border: '2px solid black', marginTop: '5px', display: 'inline-flex'}}>
+      <div className='editor-main-container'>
         <EditorContent editor={editor} />
       </div>
 
-      <div style={{border: '2px solid black', display: 'flex', flexDirection: 'column', marginTop: '5px'}}>
+      <div className='editor-meta-container'>
         <div style={{marginTop: 'auto', width: '100%'}}>{editor.storage.characterCount.words()} words</div>
       </div>
     </div>
@@ -107,3 +111,4 @@ const Editor = () => {
 }
 
 export default Editor
+
