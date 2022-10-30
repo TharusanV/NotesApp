@@ -98,46 +98,45 @@ button:hover {
 }
 
 /*Editor*/
-.editor-header-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 210mm;
-  margin-left: auto;
-  margin: auto;
+.main-note-editor-container{
+  height: 20vh;
+  padding: 25px;
 }
 
-.editor-header-container input{
+.main-note-editor-container input,
+.ProseMirror, .navbar{
   display: block;
   border: 1px solid #ddd;
   margin-bottom: 20px;
-  width: 210mm;
-  height: calc(50vh - 130px);
+  width: 100%;
+  height: calc(90vh - 130px);
   padding: 10px;
   resize: none;
   font-size: inherit;
   font-family: inherit;
+  overflow-y: scroll;
+}
+
+
+.main-note-editor-container input, .navbar {
   height: 50px;
   font-size: 2rem;
 }
 
-
-.editor-navbar-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #ddd;
-  width: 210mm;
-  margin-left: auto;
-  margin: auto;
+.navbar{
+  padding: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 50px;
 }
 
-.editor-navbar-container div{
+.navbar div{
+  display: inline;
   margin-right: 20px;
 }
 
-.editor-navbar-container button{
-  color: #000;
+.navbar button{
+  color: rgb(0, 0, 0);
 }
 
 .generate-pdf button{
@@ -149,45 +148,22 @@ button:hover {
   font-weight: bold;
 }
 
-
-.editor-note-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 210mm;
-  margin-left: auto;
-  margin: auto;
-  margin-top: 10px;
-  border: 2px solid black;
-
-}
-
-.ProseMirror{
-  width: 210mm;
-  min-height: 100px;
-  padding: 5px;
-}
-
-.ProseMirror p {
-  margin: 0;
+.font-color input{
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0;
   border: 0;
-}
-
-.font-size{
-  display: inline;
-  border: 1px solid black;
-  padding-right: 4px;
-}
-
-.font-size input{
-  width: 22px;
   margin: 0;
-  border: 0;
-  outline: none;
+  overflow: hidden;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
--webkit-appearance: none; 
-   margin: 0; 
+.font-family, .font-header{
+  font-size: 15px;
+  margin-right: 10px;
 }
+
+
+
