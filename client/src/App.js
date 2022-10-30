@@ -1,15 +1,12 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {Box} from '@mui/material';
 import { Header, Hero, Sidebar } from './components';
 
 const App = () => {
   return (
-    <Box>
-      <Header/>
+    <div className='App'>
       <Sidebar/>
       <Hero/>
-    </Box>
+    </div>
   )
 }
 

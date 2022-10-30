@@ -1,83 +1,69 @@
+/* Global CSS */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+}
+
 body {
   margin: 0;
-  padding: 0;
   width: 100%;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: auto;
+  font-size: 16px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-p{
-  font-size: 16px;
-}
-
-
-.ProseMirror{
-  width: 210mm;
-  min-height: 297mm;
-  margin-left: auto;
-  margin: auto;
-  overflow: scroll;
-
-}
-
-.ProseMirror p {
-  margin: 0;
-  margin: 96px;
+button{
+  background: none;
   border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  color: green;
 }
 
-/*Header CSS*/
-.header-container{
-  position: absolute;
-  width: auto;
-  height: 10%;
-  border-bottom: 2px solid black;
-  background-color: white;
-  left: 30%;
+button:hover {
+  color: rgb(204, 0, 0);
 }
+
+
+
+
 
 /*Sidebar CSS*/
 .sidebar-container{
-  position: absolute;
   width: 30%;
   height: 100vh;
   background-color: red;
-  z-index: 100;
   border-right: 1px solid black;
+  overflow-y: scroll;
 }
 
 .sidebar-header{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin: 10px 10px 0 10px;
+  padding-bottom: 5px;
   border-bottom: 2px solid black;
-}
-
-.sidebar-icon{
-  display: inline-flex;
-  align-items: center;
-  background-color: white;
-  border-radius: 50%;
-  width: 10%;
-  height: 10%;
-  border: 2px solid black;
-}
-
-.sidebar-icon:hover{
-  color: #04c;
 }
 
 .sidebar-notes{
   height: calc(100vh - 78px);
-  overflow-y: scroll;
 }
 
 .sidebar-note{
   margin: 10px 10px 0 10px;
   background-color: white;
+  padding: 5px;
   cursor: pointer;
   border: 2px solid black;
 }
@@ -88,61 +74,120 @@ p{
   align-items: center;
 }
 
-.sidebar-note-preview{
-  
-}
 
 .sidebar-note-meta{
+  display: block;
+  color: #999;
+}
 
+.sidebar-note:hover {
+  background: #ddd;
+}
+
+
+.sidebar-note.active,
+.sidebar-note.active small {
+  background: #08c;
+  color: white;
 }
 
 /*Hero CSS*/
 .hero-container{
-  display: inline-flex;
-  position: absolute;
-  width: 100%;
-  border-left: 2px solid black;
-  left: 30%;
-  top: 52px;
-  background-color: #D3D3D3;
+  width: 70%;
+  height: 100vh;
 }
 
-.hero-inside-container{
-  width: 81%;
-  height: 90%;
-  margin: 20px 20px 0 20px;
-  border: 2px solid black;
-  background-color: white;
-}
-
-.hero-editor-container{
+/*Editor*/
+.editor-header-container{
   display: flex;
   justify-content: center;
-  margin: 5px;
+  align-items: center;
+  width: 210mm;
+  margin-left: auto;
+  margin: auto;
 }
 
-/*Editor CSS*/
+.editor-header-container input{
+  display: block;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  width: 210mm;
+  height: calc(50vh - 130px);
+  padding: 10px;
+  resize: none;
+  font-size: inherit;
+  font-family: inherit;
+  height: 50px;
+  font-size: 2rem;
+}
+
+
 .editor-navbar-container{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 5px;
-  border-bottom: '2px solid black';
+  border: 1px solid #ddd;
+  width: 210mm;
+  margin-left: auto;
+  margin: auto;
 }
 
 .editor-navbar-container div{
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
-.editor-main-container{
-  display: inline-flex;
-  margin-top: 5px;
-  border: 1px solid black;
+.editor-navbar-container button{
+  color: #000;
 }
 
-.editor-meta-container{
+.generate-pdf button{
+  color: #08c;
+  font-size: 20px;
+}
+
+.generate-pdf button:hover{
+  font-weight: bold;
+}
+
+
+.editor-note-container{
   display: flex;
-  flex-direction: column;
-  margin-top: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 210mm;
+  margin-left: auto;
+  margin: auto;
+  margin-top: 10px;
   border: 2px solid black;
+
+}
+
+.ProseMirror{
+  width: 210mm;
+  min-height: 100px;
+  padding: 5px;
+}
+
+.ProseMirror p {
+  margin: 0;
+  border: 0;
+}
+
+.font-size{
+  display: inline;
+  border: 1px solid black;
+  padding-right: 4px;
+}
+
+.font-size input{
+  width: 22px;
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+-webkit-appearance: none; 
+   margin: 0; 
 }
