@@ -120,19 +120,20 @@ button:hover {
 
 .main-note-editor-container input, .navbar {
   height: 50px;
-  font-size: 2rem;
 }
 
 .navbar{
   padding: 0;
   padding-left: 5px;
   padding-right: 5px;
-  height: 50px;
+  height: 40px;
 }
 
 .navbar div{
-  display: inline;
+  display: inline-block;
   margin-right: 20px;
+  margin-bottom: 10px;
+  
 }
 
 .navbar button{
@@ -158,6 +159,7 @@ button:hover {
   border: 0;
   margin: 0;
   overflow: hidden;
+  vertical-align:middle;
 }
 
 .font-family, .font-header{
@@ -165,5 +167,44 @@ button:hover {
   margin-right: 10px;
 }
 
+.font-size{
+  margin: 0;
+}
+
+.font-size input{
+  display: inline-flex;
+  width: 40px;
+  font-size: 20px;
+  height: 30px;
+  background-color: white;
+  border: 0;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.font-size span{
+  font-size: 20px;
+}
+
+.font-bold, .font-italic, .font-underline, .bullet-list,
+.ordered-list, .block-quote, .horizontal-ruler{
+  vertical-align:bottom;
+}
 
 
+.app-sidebar-note.active,
+.app-sidebar-note.active small {
+  background: #08c;
+  color: white;
+}
+
+.no-active-note {
+  width: 70%;
+  height: 100vh;
+  line-height: 100vh;
+  text-align: center;
+  font-size: 2rem;
+  color: #999;
+}

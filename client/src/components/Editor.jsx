@@ -4,6 +4,8 @@ import TextStyle from '@tiptap/extension-text-style'
 import { Color } from '@tiptap/extension-color'
 import FontFamily from '@tiptap/extension-font-family'
 import Link from '@tiptap/extension-link'
+import Highlight from '@tiptap/extension-highlight'
+
 import CharacterCount from '@tiptap/extension-character-count'
 import Underline from '@tiptap/extension-underline'
 
@@ -16,29 +18,45 @@ import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-
+import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
 
 import jsPDF from 'jspdf';
 import { useState } from 'react'
 
 import { FontSize } from './Extentions/FontSize'
 
-import Select from 'react-select'
 
-
-const Editor = () => {
+const Editor = ( {prop_GetActiveNote, prop_OnUpdateNote}) => {
   const [editorContent, setEditorContent] = useState("");
-
   const [fontSize, setFontSize] = useState(16);
 
+  const fontOptions = [
+    {value: "Arial", label: "Arial"},
+    {value: "Inter", label: "Inter"},
+    {value: "Calibri", label: "Calibri"},  
+    {value: "Cambria", label: "Cambria"},    
+  ];
+
+  const onEditField = (key, value) => {
+    prop_OnUpdateNote({
+      ...prop_GetActiveNote,
+      id: prop_GetActiveNote.id,
+      [key]: value,
+      lastModified: Date.now(),
+    })
+  };
+
   const editor = useEditor({
-    content: '<p></p>',
+    content: `<p></p>`,
     extensions: [
-      StarterKit, TextStyle, Color, CharacterCount, FontSize, Underline, FontFamily,
+      StarterKit, TextStyle, Color, CharacterCount, FontSize, 
+      Underline, FontFamily,
     ],
-    onUpdate({ editor }) {
+    onUpdate({ editor}) {
       setEditorContent(editor.getHTML());
+      onEditField("body", editor.getText());
     }
+    
   })
 
   if (!editor) {
@@ -60,30 +78,13 @@ const Editor = () => {
     editor.commands.setFontFamily(fontSelectorValue);
   }
 
-  function headerSelector(selectedOption){
-    editor.commands.setFontFamily(selectedOption.text);
-  }
-  const fontOptions = [
-    {value: "Arial", label: "Arial"},
-    {value: "Inter", label: "Inter"},
-    {value: "Calibri", label: "Calibri"},  
-    {value: "Cambria", label: "Cambria"},    
-  ];
-
-  const fontHeaders = [
-    {value: "level : 1", label: "Heading 1"},
-    {value: "level : 2", label: "Heading 2"},
-    {value: "level : 3", label: "Heading 3"},
-    {value: "level : 4", label: "Heading 4"},
-    {value: "level : 5", label: "Heading 5"},
-    {value: "level : 6", label: "Heading 6"},
-  ];
+  if(!prop_GetActiveNote) return <div className='no-active-note'>No selected note</div>
   
 
   return (
-    <div>
+    <div className='hero-container'>
       <div className='main-note-editor-container'>
-        <input id='note-title' type='text' autoFocus />
+        <input id='note-title' type='text' onChange={(event) => onEditField("title", event.target.value)} autoFocus value={prop_GetActiveNote.title} />
         <div className='navbar'>
           
           <div className='undo-redo'>
@@ -101,11 +102,39 @@ const Editor = () => {
             ))}
           </select>
 
-          <select className="font-header" id="header-selector" onChange={headerSelector}>
-            {fontHeaders.map((header) => (
-              <option key={header.label} value={header.value || ''}>{header.label}</option>
-            ))}
-          </select>
+          <div className='font-size'>
+            <input 
+              type="number"
+              onChange={(event) => {setFontSize(event.target.value);}}
+              value= {fontSize}
+              autoFocus
+            />
+            <span>px</span>
+          </div>
+
+          <div className="font-header">
+            <button
+            style={{marginRight: "10px"}}
+            onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+            className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
+            >
+              H1
+            </button>
+            <button
+            style={{marginRight: "10px"}}
+            onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+            className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
+            >
+              H2
+            </button>
+            <button
+            style={{marginRight: "10px"}}
+            onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+            className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}
+            >
+              H3
+            </button>
+          </div>
           
           <div className='font-bold'>
             <button
@@ -177,6 +206,12 @@ const Editor = () => {
             </button>
           </div>
 
+          <div className='horizontal-ruler'>
+            <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
+              <HorizontalRuleIcon/>
+            </button>
+          </div>
+
           <div className='character-count'>
             <p style={{display: 'inline', fontSize: '16px'}}>{editor.storage.characterCount.words()} words</p>
           </div>
@@ -185,8 +220,9 @@ const Editor = () => {
             <button onClick={() => { generatePDF() }} type='primary'>Generate PDF</button>
           </div>
         </div>
-
-        <EditorContent editor={editor}/>
+        
+        <EditorContent editor={editor}/>        
+      
       </div>
     </div>
 
