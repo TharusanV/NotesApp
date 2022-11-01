@@ -1,5 +1,5 @@
 import './App.css';
-import { Editor, Sidebar } from './components';
+import { NoteEditor, Sidebar } from './components';
 import { useState } from 'react';
 import uuid from 'react-uuid'
 
@@ -38,11 +38,12 @@ const App = () => {
 
     setNotes(updateNotesArray);
   }
+  
 
   return (
     <div className='App'>
       <Sidebar prop_Notes={notes} prop_OnAddNote={onAddNote} prop_OnDeleteNote={onDeleteNote} prop_ActiveNote={activeNote} prop_SetActiveNote={setActiveNote}/>
-      <Editor prop_GetActiveNote={getActiveNote()} prop_OnUpdateNote={onUpdateNote}/>
+      <NoteEditor prop_GetActiveNote={getActiveNote()} prop_OnUpdateNote={onUpdateNote}/>
     </div>
   )
 }

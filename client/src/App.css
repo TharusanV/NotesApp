@@ -72,8 +72,20 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  word-wrap: break-word;
 }
 
+.sidebar-note-header button{
+  display: block;
+}
+
+.sidebar-note-header strong{
+  overflow: hidden;
+}
+
+.sidebar-note-preview{
+  word-wrap: break-word;
+}
 
 .sidebar-note-meta{
   display: block;
@@ -104,7 +116,7 @@ button:hover {
 }
 
 .main-note-editor-container input,
-.ProseMirror, .navbar{
+textarea, .ProseMirror, .toolbar, .test{
   display: block;
   border: 1px solid #ddd;
   margin-bottom: 20px;
@@ -118,81 +130,9 @@ button:hover {
 }
 
 
-.main-note-editor-container input, .navbar {
+.main-note-editor-container input, .toolbar{
   height: 50px;
 }
-
-.navbar{
-  padding: 0;
-  padding-left: 5px;
-  padding-right: 5px;
-  height: 40px;
-}
-
-.navbar div{
-  display: inline-block;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  
-}
-
-.navbar button{
-  color: rgb(0, 0, 0);
-}
-
-.generate-pdf button{
-  color: #08c;
-  font-size: 20px;
-}
-
-.generate-pdf button:hover{
-  font-weight: bold;
-}
-
-.font-color input{
-  display: inline-flex;
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  border-radius: 50%;
-  padding: 0;
-  border: 0;
-  margin: 0;
-  overflow: hidden;
-  vertical-align:middle;
-}
-
-.font-family, .font-header{
-  font-size: 15px;
-  margin-right: 10px;
-}
-
-.font-size{
-  margin: 0;
-}
-
-.font-size input{
-  display: inline-flex;
-  width: 40px;
-  font-size: 20px;
-  height: 30px;
-  background-color: white;
-  border: 0;
-  padding: 0;
-  border: 0;
-  margin: 0;
-  overflow: hidden;
-}
-
-.font-size span{
-  font-size: 20px;
-}
-
-.font-bold, .font-italic, .font-underline, .bullet-list,
-.ordered-list, .block-quote, .horizontal-ruler{
-  vertical-align:bottom;
-}
-
 
 .app-sidebar-note.active,
 .app-sidebar-note.active small {
@@ -208,3 +148,26 @@ button:hover {
   font-size: 2rem;
   color: #999;
 }
+
+
+
+
+.toolbar{
+  padding: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 40px;
+}
+
+.toolbar div{
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  
+}
+
+.toolbar button{
+  color: rgb(0, 0, 0);
+}
+
+
