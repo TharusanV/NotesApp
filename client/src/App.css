@@ -33,10 +33,6 @@ button:hover {
   color: rgb(204, 0, 0);
 }
 
-
-
-
-
 /*Sidebar CSS*/
 .sidebar-container{
   width: 30%;
@@ -116,7 +112,7 @@ button:hover {
 }
 
 .main-note-editor-container input,
-textarea, .ProseMirror, .toolbar, .test{
+textarea{
   display: block;
   border: 1px solid #ddd;
   margin-bottom: 20px;
@@ -130,7 +126,7 @@ textarea, .ProseMirror, .toolbar, .test{
 }
 
 
-.main-note-editor-container input, .toolbar{
+.main-note-editor-container input{
   height: 50px;
 }
 
@@ -150,24 +146,5 @@ textarea, .ProseMirror, .toolbar, .test{
 }
 
 
-
-
-.toolbar{
-  padding: 0;
-  padding-left: 5px;
-  padding-right: 5px;
-  height: 40px;
-}
-
-.toolbar div{
-  display: inline-block;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  
-}
-
-.toolbar button{
-  color: rgb(0, 0, 0);
-}
 
 

@@ -5,6 +5,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const Sidebar = ({prop_Notes, prop_OnAddNote, prop_OnDeleteNote, prop_ActiveNote, prop_SetActiveNote}) => {
   
   const sortedNotes = prop_Notes.sort((a,b) => b.lastModified - a.lastModified);
+
+  function getText(html){
+    var divContainer= document.createElement("div");
+    divContainer.innerHTML = html;
+    return divContainer.textContent || divContainer.innerText || "";
+  }
   
   return (
     <div className="sidebar-container">
@@ -34,7 +40,7 @@ const Sidebar = ({prop_Notes, prop_OnAddNote, prop_OnDeleteNote, prop_ActiveNote
               </button>
             </div>
               <p className="sidebar-note-preview">
-                {(note.body && note.body.substr(0,100) + '...').replace(/<[^>]+>/g, '')} {/*Only if there is a note body then take a certain number of characters as its a preview*/}
+                {getText((note.body && note.body.substr(0,100) + '...'))}
               </p>
               <small className="sidebar-note-meta">
                 Last modified: {new Date(note.lastModified).toLocaleDateString("en-GB", {hour: "2-digit", minute: "2-digit",})}

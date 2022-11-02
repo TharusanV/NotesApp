@@ -24,7 +24,7 @@ const App = () => {
   }
 
   const onDeleteNote = (deletedNoteID) => {
-    setNotes(notes.filter((note) => note.id != deletedNoteID)); //Will print false if it matches with the to be deleted note id and then remove it
+    setNotes(notes.filter((note) => note.id !== deletedNoteID)); //Will print false if it matches with the to be deleted note id and then remove it
   }
 
   const onUpdateNote = (updateNote) => {
