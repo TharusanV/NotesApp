@@ -1,0 +1,200 @@
+/* Global CSS */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+
+/***  Base CSS ***/
+.NoteCreatorHub {
+  
+  box-sizing: border-box;
+}
+
+.NoteCreatorHub body {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.NoteCreatorHub button{
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 5px;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  color: green;
+}
+
+.NoteCreatorHub button:hover {
+  color: rgb(204, 0, 0);
+}
+
+
+
+
+/***  Sidebar CSS ***/
+.noteCreator-sidebar-container{
+  width: 30%;
+  height: 100vh;
+  background-color:  var(--bg);
+  border-right: 1px solid black;
+  overflow-y: scroll;
+}
+
+.noteCreator-sidebar-header{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 10px 0 10px;
+  padding-bottom: 5px;
+  color: white;
+  border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+.noteCreator-sidebar-notes{
+  height: calc(100vh - 78px);
+}
+
+.noteCreator-sidebar-note{
+  margin: 10px 10px 0 10px;
+  background-color: white;
+  padding: 5px;
+  cursor: pointer;
+  border: 2px solid rgb(255, 255, 255);
+}
+
+.noteCreator-sidebar-note-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  word-wrap: break-word;
+}
+
+.noteCreator-sidebar-note-header button{
+  display: block;
+}
+
+.noteCreator-sidebar-note-header strong{
+  overflow: hidden;
+}
+
+.noteCreator-sidebar-note-preview{
+  word-wrap: break-word;
+}
+
+.noteCreator-sidebar-note-meta{
+  display: block;
+  color: #999;
+}
+
+.noteCreator-sidebar-note:hover {
+  background: #ddd;
+}
+
+
+.noteCreator-sidebar-note.active,
+.noteCreator-sidebar-note.active small {
+  background: #08c;
+  color: white;
+}
+
+/*Sidebar Note When Active*/
+.noteCreator-sidebar-note.active,
+.noteCreator-sidebar-note.active small {
+  background: #08c;
+  color: white;
+}
+
+/*Sidebar Note When NOT Active*/
+.no-active-note {
+  width: 70%;
+  height: 100vh;
+  line-height: 100vh;
+  text-align: center;
+  font-size: 2rem;
+  color: #999;
+  background-color: white;
+}
+
+
+
+/*Hero CSS*/
+.noteCreator-hero-container{
+  width: 70%;
+  height: 100vh;
+  background-color: white;
+}
+
+
+
+
+
+/****** Editor  *****/
+.noteCreator-main-note-editor-container{
+  height: 20vh;
+  padding: 25px;
+}
+
+.main-note-editor-container input,
+textarea{
+  display: block;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  width: 100%;
+  height: calc(90vh - 130px);
+  padding: 10px;
+  resize: none;
+  font-size: inherit;
+  font-family: inherit;
+  overflow-y: scroll;
+}
+
+/*Text Area*/
+.ck-editor__editable {
+  min-height: calc(90vh - 90px);
+  max-height: calc(90vh - 90px);
+}
+
+/*Note Title Input*/
+.noteCreator-main-note-editor-container input{
+  height: 50px;
+}
+
+/*Note categories */
+.noteCreator-main-note-editor-container select{
+  margin-left: 5px;
+}
+
+/*Note Category Dropdown*/
+.noteCreator-main-note-editor-container ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.noteCreator-main-note-editor-container a{
+  color: black;
+  text-decoration: none;
+}
+
+.noteCreator-sidebar-note-header button{
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  color: green;
+}
+
+.noteCreator-sidebar-note-header button:hover {
+  color: rgb(204, 0, 0);
+}
+
+.noteCreator-sidebar-note-header button{
+  display: block;
+}
