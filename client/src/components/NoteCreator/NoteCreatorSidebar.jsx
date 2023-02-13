@@ -11,11 +11,7 @@ const NoteCreatorSidebar = ({
   prop_ActiveNote,
   prop_SetActiveNote,
 }) => {
-  let navigate = useNavigate();
 
-  const route = () => {
-    navigate("/");
-  };
   const sortedNotes = prop_Notes.sort((a, b) => b.changed - a.changed); //An array which will get the Notes prop from the hub and sort it based on last modified
 
   //Function to return the pure text for each note which will be used in the sidebar note preview
