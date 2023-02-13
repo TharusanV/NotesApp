@@ -1,35 +1,27 @@
 # ReactJS - Note Creator App
 
-### Live Link: https://note-creator-prototype.netlify.app/
+### Live Link: https://tharusanv.github.io/NotesApp/
 
-### Current Prototype Previews:
-![image](https://user-images.githubusercontent.com/108695481/200142573-1f083b0e-a191-4647-80ff-de49568a4595.png)
+### README Update - 13/02/23
 
-![image](https://user-images.githubusercontent.com/108695481/200142423-5f1c051d-91d0-407a-81c6-2e634b696cbe.png)
-
+### Current Prototype Preview:
+![image](https://user-images.githubusercontent.com/108695481/218597661-df326a2d-fd78-442e-bee4-89a6458c26b8.png)
 
 ### Description :
-Creating this repository to create a template for my Note Creator component as a part of my university group project which will allow me to test my code without affect the work the rest of the group is doing. The main Focuses of this project is deciding what will be the best Rich-Text-Editor to use, learning how to switch between notes, store and return data from a database. Aspects like styling will just be general to test for how responsive everything is.
+Created this repository initially as a playground to test the functional and user-interface related areas of my component 'Note Creator' for my Year 2 Group Project (problem statement for the project below) without affecting the main repository. With that being said, although 'EduNotes' (name of our project) is a Full-Stack web application through the use of MySQL and Java SpringBoot this repo doesn't have a back-end, but as I have all the code for the back-end already may use something like FireBase if I want to in the future but we will see.  
+
+### Problem Statement related to my Year 2 Group Project 'EduNotes'
+![image](https://user-images.githubusercontent.com/108695481/218598475-52dc0257-ab47-496f-954f-0df5bc4dc8f4.png)
 
 ### Technologies used :
-    - HTML/CSS/Javascript
     - React JS
-    - CKEditor Rich-text-editor
-    - Material UI Icons
-    - MySQL
+    - CKEditor5
 
 ### Functionalities implemented :
     - Create Note
     - Delete Note
     - Tool Bar
     - Switching between notes
-    
-##  Functionalities to be implemented :
     - Character Count
-    - PDF Creator
-    - Note Loader from backend
-    
-    - Deletion confirmation
-    - Archive
-    - Folders (for different topics)
-    - Drafts
+  
+
