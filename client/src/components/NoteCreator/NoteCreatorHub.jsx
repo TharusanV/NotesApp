@@ -9,7 +9,6 @@ const NoteCreatorHub = () => {
   const [notes, setNotes] = useState([]); //Array of note objects (Getter = notes, Setter = setNotes())
   const [activeNote, setActiveNote] = useState(false); //Stores the current active note - false meaning no active note (Getter = activeNote, Setter = setActiveNotes())
 
-
   //Arrow function to add notes to the notes array aswell as the notes table in the database.
   const onAddNote = () => {
     const newNote = {

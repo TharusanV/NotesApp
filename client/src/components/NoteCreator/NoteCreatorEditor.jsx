@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+
+import jsPDF from 'jspdf';
+import html2canvas from "html2canvas";
 
 
-//With props being an object we know props has one key on it therefore we can destructure it through naming the key creating a local variable 
 const NoteCreatorEditor = ({prop_GetActiveNote, prop_OnUpdateNote}) => {
 
-  //Getters and Setters that are a part of the 'preview note' button to see how the note will be viewed
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [wordCount, setWordCount] = useState(0);
+  const noteTopics = [{name: "Maths"}, {name: "Science"}, {name: "English"}]
 
-  const [wordCount, setWordCount] = useState(0); //Getter and setter for the word count
-  const noteTopics = [{name: "Maths"}, {name: "Science"}, {name: "English"}, {name: "CS"}, {name: "Business"}, {name: "Pharmacy"}, {name: "Law"}, {name: "Economics"}, 
-  {name: "Accounting"}, {name: "Psychology"}, {name: "Medicine"}, {name: "Politics"}]
+  const [editorData, setEditorData] = useState("");
 
   const onEditField = (key, value) => {
     prop_OnUpdateNote({
@@ -27,17 +22,29 @@ const NoteCreatorEditor = ({prop_GetActiveNote, prop_OnUpdateNote}) => {
     });
   };
 
-  //If there is no active note selected then this will be used as a placeholder
   if (!prop_GetActiveNote)
-  return <div className="no-active-note">No selected note</div>;
+    return <div className="no-active-note">No selected note</div>;
 
-  //Used to set the topic of the note
   const settingTopic = () => {
     var select = document.getElementById("topicList");
     var value = select.options[select.selectedIndex].value;
     onEditField("topic", value);
   };
 
+  const handleDownloadPDF = () => {
+    const input = document.getElementById("editor");
+    const prevVisibility = input.style.visibility; // save previous visibility
+    input.style.visibility = "visible"; // temporarily make the div visible
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, "PNG", 0, 0);
+      pdf.save("download.pdf");
+      input.style.visibility = prevVisibility; // reset visibility
+    });
+  };
+  
+  
 
   return (
     <>
@@ -73,64 +80,40 @@ const NoteCreatorEditor = ({prop_GetActiveNote, prop_OnUpdateNote}) => {
           </label>
 
           <label
-            style={{
-              marginBottom: "20px",
-              display: "inline-block",
-              marginRight: "10px",
+            style={{marginBottom: "20px",display: "inline-block",marginRight: "10px",
             }}
           >
             Word Count: {wordCount}{" "}
           </label>
+          
+          <div style={{display: 'inline-block'}}>
+            <button onClick={handleDownloadPDF}>PDF</button>
+            <span className="beta-label" data-tooltip="Only Text">Beta</span>
+          </div>
+
+
+
 
           <CKEditor
             editor={Editor}
             config={{
               toolbar: [
-                "heading",
-                "|",
-                "undo",
-                "redo",
-                "fontFamily",
-                "fontSize",
-                "bold",
-                "italic",
-                "link",
-                "bulletedList",
-                "numberedList",
-                "|",
-                "outdent",
-                "indent",
-                "|",
-                "blockQuote",
-                "insertTable",
-                "mediaEmbed",
-                "underline",
-                "todoList",
-                "strikethrough",
-                "specialCharacters",
-                "pageBreak",
-                "highlight",
-                "horizontalLine",
-                "fontBackgroundColor",
-                "fontColor",
-                "code",
-                "codeBlock",
-                "alignment",
+                "heading", "|", "undo", "redo", "fontFamily", "fontSize", "bold", "italic", "link", "bulletedList", 
+                "numberedList", "|", "outdent", "indent", "|", "blockQuote", "insertTable", "mediaEmbed", "underline", "todoList", 
+                "strikethrough", "specialCharacters", "pageBreak", "highlight", "horizontalLine", "fontBackgroundColor", "fontColor", "code", "codeBlock", "alignment"
               ],
             }}
             data={prop_GetActiveNote.body}
             id={prop_GetActiveNote.noteIDCustom}
             onChange={(event, editor) => {
               onEditField("body", editor.getData());
+              setEditorData(editor.getData());
               setWordCount(
-                editor
-                  .getData()
-                  .replace(/(<([^>]+)>)/gi, "")
-                  .trim()
-                  .split(/\s+/).length
+                editor.getData().replace(/(<([^>]+)>)/gi, "").trim().split(/\s+/).length
               );
             }}
           />
+          <div id="editor" dangerouslySetInnerHTML={{ __html: editorData }}></div>
         </div>
       </div>
     </>
